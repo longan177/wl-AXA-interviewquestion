@@ -44,10 +44,12 @@ function Searchform() {
             <button
               onClick={() => handleActiveClick("yes")}
               className={`active-yes ${active && "active"}`}
+              type="button"
             >
               Yes
             </button>
             <button
+              type="button"
               onClick={() => handleActiveClick("no")}
               className={`active-no ${!active && "active"} `}
             >
