@@ -150,3 +150,55 @@ p {
   font-weight: 500;
   font-size: 2rem;
 }
+
+.fixed-container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 1rem;
+}
+
+.search-form-container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+}
+
+.active-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.input-control {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.search-form-container label {
+  font-size: 2rem;
+}
+.search-form-container input {
+  font-size: 2rem;
+}
+.active-status span {
+  margin-right: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.active::after {
+  content: "✔️";
+  font-size: 1.5rem;
+}
+
+.btn-submit {
+  font-size: 1rem;
+  padding: 0.55em 0.75em;
+}
+
+.username {
+  font-size: 2rem;
+}
+
+h4 {
+  margin-top: 2rem;
+}
