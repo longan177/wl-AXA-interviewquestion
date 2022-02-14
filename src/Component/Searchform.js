@@ -1,35 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../context";
 
 function Searchform() {
   const [input, setInput] = useState("");
-  const [users, setUsers] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null);
-  const url = "https://gorest.co.in/public/v2/users?name=kumar";
+  const { setUser, setActive, active, setName } = useUserContext();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(url);
-      const data = await response.json();
-      setUsers(data);
-    };
-    fetchData();
-  }, []);
+  const handleActiveClick = (v) => {
+    if (v === "yes") {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!input) return;
-    if (users.length === 0) {
-      return console.log("User list has not loaded yet.");
-    }
-    const user = users.filter(
-      (user) => user.name.toLowerCase() === input.toLowerCase()
-    );
-    console.log(user);
-    if (user.length === 0) return;
-    setCurrentUser({ ...user });
+    setName(input.toLowerCase());
+    navigate("/info");
   };
 
-  console.log(currentUser);
   const handleChange = (e) => {
     setInput(e);
   };
@@ -39,20 +31,36 @@ function Searchform() {
       <div className="search-form-container fixed-container">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="input-control">
-            <label>Search User: </label>
+            <label>Search User</label>
             <input
               type="text"
               placeholder="eg: Wei Loong"
               value={input}
               onChange={(e) => handleChange(e.target.value)}
             ></input>
+          </div>
+
+          <div>
+            <button
+              onClick={() => handleActiveClick("yes")}
+              className={`active-yes ${active && "active"}`}
+            >
+              Yes
+            </button>
+            <button
+              onClick={() => handleActiveClick("no")}
+              className={`active-no ${!active && "active"} `}
+            >
+              No
+            </button>
+          </div>
+          <div>
             <button type="submit" className="btn-submit">
               Search User
             </button>
           </div>
         </form>
         {input}
-        {currentUser && <UserDetail user={currentUser} />}
       </div>
     </section>
   );
@@ -67,12 +75,7 @@ function UserDetail(props) {
     <div className="active-status">
       <div className="username">Username: {name} </div>
       <div className="active-title">Active</div>
-      <span className={`active-yes ${status === "active" && "active"} `}>
-        Yes
-      </span>
-      <span className={`active-no ${status === "inactive" && "active"} `}>
-        No
-      </span>
+
       <h4>Email : {email}</h4>
       <h4>Gender: {gender} </h4>
     </div>

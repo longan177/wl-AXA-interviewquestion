@@ -202,3 +202,18 @@ p {
 h4 {
   margin-top: 2rem;
 }
+
+.search-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.search-form span {
+  margin-right: 2rem;
+  font-size: 2rem;
+}
+
+button {
+  font-size: 2rem;
+}
