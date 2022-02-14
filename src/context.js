@@ -7,8 +7,8 @@ export function useUserContext() {
 
 export default function UserProvider({ children }) {
   const [active, setActive] = useState(null);
-  const [name, setName] = useState(null);
-  const [user, setUser] = useState(null);
+  const [name, setName] = useState("");
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     console.log("running useeffect");

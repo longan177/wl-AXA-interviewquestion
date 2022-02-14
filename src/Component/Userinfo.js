@@ -3,14 +3,14 @@ import { useUserContext } from "../context";
 import { Link } from "react-router-dom";
 
 function Userinfo() {
-  //   const { user } = useUserContext();
-  //   console.log("user", user);
+  const { user } = useUserContext();
+
   return (
     <div className="fixed-container">
-      <div>Name : </div>
-      <div>Gender : </div>
-      <div>Email : </div>
-      <div>Active : </div>
+      <div>Name : {user.name} </div>
+      <div>Gender :{user.gender} </div>
+      <div>Email :{user.email} </div>
+      <div>Active :{user.status} </div>
       <Link to="/">
         <button>Back</button>
       </Link>
